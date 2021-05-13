@@ -1,0 +1,403 @@
+
+scala> val broadcastVar = sc.broadcast(Array(1, 2, 3))!
+<console>:24: error: value ! is not a member of org.apache.spark.broadcast.Broadcast[Array[Int]]
+       val broadcastVar = sc.broadcast(Array(1, 2, 3))!
+                                                      ^
+
+scala> val broadcastVar = sc.broadcast(Array(1, 2, 3))
+broadcastVar: org.apache.spark.broadcast.Broadcast[Array[Int]] = Broadcast(0)
+
+scala> broadcastVar.value()
+<console>:26: error: not enough arguments for method apply: (i: Int)Int in class Array.
+Unspecified value parameter i.
+       broadcastVar.value()
+                         ^
+
+scala> broadcastVar.value
+res1: Array[Int] = Array(1, 2, 3)
+
+scala> val cards = sc.textFile("deckofcards.txt")
+cards: org.apache.spark.rdd.RDD[String] = deckofcards.txt MapPartitionsRDD[1] at textFile at <console>:24
+
+scala> cards.collect
+res2: Array[String] = Array(BLACK|SPADE|2, BLACK|SPADE|2, BLACK|SPADE|2, BLACK|SPADE|2, BLACK|SPADE|2, BLACK|SPADE|2, BLACK|SPADE|2, BLACK|SPADE|3, BLACK|SPADE|4, BLACK|SPADE|5, BLACK|SPADE|6, BLACK|SPADE|7, BLACK|SPADE|8, BLACK|SPADE|9, BLACK|SPADE|10, BLACK|SPADE|J, BLACK|SPADE|Q, BLACK|SPADE|K, BLACK|SPADE|A, BLACK|CLUB|2, BLACK|CLUB|3, BLACK|CLUB|4, BLACK|CLUB|5, BLACK|CLUB|6, BLACK|CLUB|7, BLACK|CLUB|8, BLACK|CLUB|9, BLACK|CLUB|10, BLACK|CLUB|J, BLACK|CLUB|Q, BLACK|CLUB|K, BLACK|CLUB|A, RED|DIAMOND|2, RED|DIAMOND|3, RED|DIAMOND|4, RED|DIAMOND|5, RED|DIAMOND|6, RED|DIAMOND|7, RED|DIAMOND|8, RED|DIAMOND|9, RED|DIAMOND|10, RED|DIAMOND|J, RED|DIAMOND|Q, RED|DIAMOND|K, RED|DIAMOND|A, RED|HEART|2, RED|HEART|3, RED|HEART|4, RED|HEART|5, RED|HEART|6, RED|HEART|7, ...
+
+scala> cards.filter(x=>x.contains("RED"))
+res3: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[2] at filter at <console>:26
+
+scala> cards.filter(x=>x.contains("RED")).collect
+res4: Array[String] = Array(RED|DIAMOND|2, RED|DIAMOND|3, RED|DIAMOND|4, RED|DIAMOND|5, RED|DIAMOND|6, RED|DIAMOND|7, RED|DIAMOND|8, RED|DIAMOND|9, RED|DIAMOND|10, RED|DIAMOND|J, RED|DIAMOND|Q, RED|DIAMOND|K, RED|DIAMOND|A, RED|HEART|2, RED|HEART|3, RED|HEART|4, RED|HEART|5, RED|HEART|6, RED|HEART|7, RED|HEART|8, RED|HEART|9, RED|HEART|10, RED|HEART|J, RED|HEART|Q, RED|HEART|K, RED|HEART|A)
+
+scala> val redcards = cards.filter(x=>x.contains("RED"))
+redcards: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[4] at filter at <console>:25
+
+scala> redcars.count()
+<console>:24: error: not found: value redcars
+       redcars.count()
+       ^
+
+scala> redcards.count()
+res6: Long = 26
+
+scala> redcards.saveAsTextFile("/Users/daviddsouza")
+org.apache.hadoop.mapred.FileAlreadyExistsException: Output directory file:/Users/daviddsouza already exists
+  at org.apache.hadoop.mapred.FileOutputFormat.checkOutputSpecs(FileOutputFormat.java:131)
+  at org.apache.spark.internal.io.HadoopMapRedWriteConfigUtil.assertConf(SparkHadoopWriter.scala:298)
+  at org.apache.spark.internal.io.SparkHadoopWriter$.write(SparkHadoopWriter.scala:71)
+  at org.apache.spark.rdd.PairRDDFunctions.$anonfun$saveAsHadoopDataset$1(PairRDDFunctions.scala:1090)
+  at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+  at org.apache.spark.rdd.RDD.withScope(RDD.scala:414)
+  at org.apache.spark.rdd.PairRDDFunctions.saveAsHadoopDataset(PairRDDFunctions.scala:1088)
+  at org.apache.spark.rdd.PairRDDFunctions.$anonfun$saveAsHadoopFile$4(PairRDDFunctions.scala:1061)
+  at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+  at org.apache.spark.rdd.RDD.withScope(RDD.scala:414)
+  at org.apache.spark.rdd.PairRDDFunctions.saveAsHadoopFile(PairRDDFunctions.scala:1026)
+  at org.apache.spark.rdd.PairRDDFunctions.$anonfun$saveAsHadoopFile$3(PairRDDFunctions.scala:1008)
+  at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+  at org.apache.spark.rdd.RDD.withScope(RDD.scala:414)
+  at org.apache.spark.rdd.PairRDDFunctions.saveAsHadoopFile(PairRDDFunctions.scala:1007)
+  at org.apache.spark.rdd.PairRDDFunctions.$anonfun$saveAsHadoopFile$2(PairRDDFunctions.scala:964)
+  at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+  at org.apache.spark.rdd.RDD.withScope(RDD.scala:414)
+  at org.apache.spark.rdd.PairRDDFunctions.saveAsHadoopFile(PairRDDFunctions.scala:962)
+  at org.apache.spark.rdd.RDD.$anonfun$saveAsTextFile$2(RDD.scala:1578)
+  at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+  at org.apache.spark.rdd.RDD.withScope(RDD.scala:414)
+  at org.apache.spark.rdd.RDD.saveAsTextFile(RDD.scala:1578)
+  at org.apache.spark.rdd.RDD.$anonfun$saveAsTextFile$1(RDD.scala:1564)
+  at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+  at org.apache.spark.rdd.RDD.withScope(RDD.scala:414)
+  at org.apache.spark.rdd.RDD.saveAsTextFile(RDD.scala:1564)
+  ... 47 elided
+
+scala> redcards.saveAsTextFile("/Users/daviddsouza/results")
+
+scala> val accum = sc.accumulator(0)
+<console>:24: error: value accumulator is not a member of org.apache.spark.SparkContext
+       val accum = sc.accumulator(0)
+                      ^
+
+scala> accumulator
+<console>:24: error: not found: value accumulator
+       accumulator
+       ^
+
+scala> val accum = sc.accumulator(0)
+<console>:24: error: value accumulator is not a member of org.apache.spark.SparkContext
+       val accum = sc.accumulator(0)
+                      ^
+
+scala> import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.SparkSession
+
+scala> val sqlc = new org.apache.spark.sql.SQLContext(sc)
+warning: there was one deprecation warning (since 2.0.0); for details, enable `:setting -deprecation' or `:replay -deprecation'
+sqlc: org.apache.spark.sql.SQLContext = org.apache.spark.sql.SQLContext@7bafb922
+
+scala> val student = sqlc.read.json("/Users/daviddsouza/student.json")
+student: org.apache.spark.sql.DataFrame = [grade: string, id: string ... 1 more field]
+
+scala> student.show()
++-----+---+------+
+|grade| id|  name|
++-----+---+------+
+|    A|101| Tommy|
+|    A|102|  John|
+|    B|103|   Sam|
+|    C|104|Rajeev|
+|    D|105|Rajesh|
+|    A|106| Suraj|
++-----+---+------+
+
+
+scala> student.printSchema()
+root
+ |-- grade: string (nullable = true)
+ |-- id: string (nullable = true)
+ |-- name: string (nullable = true)
+
+
+scala> student.select("name")
+res12: org.apache.spark.sql.DataFrame = [name: string]
+
+scala> student.select("name").show
++------+
+|  name|
++------+
+| Tommy|
+|  John|
+|   Sam|
+|Rajeev|
+|Rajesh|
+| Suraj|
++------+
+
+
+scala> student.select("name").show()
++------+
+|  name|
++------+
+| Tommy|
+|  John|
+|   Sam|
+|Rajeev|
+|Rajesh|
+| Suraj|
++------+
+
+
+scala> student.show()
++-----+---+------+
+|grade| id|  name|
++-----+---+------+
+|    A|101| Tommy|
+|    A|102|  John|
+|    B|103|   Sam|
+|    C|104|Rajeev|
+|    D|105|Rajesh|
+|    A|106| Suraj|
++-----+---+------+
+
+
+scala> student.filter(student("grade") == "A").show()
+<console>:27: error: overloaded method value filter with alternatives:
+  (func: org.apache.spark.api.java.function.FilterFunction[org.apache.spark.sql.Row])org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] <and>
+  (func: org.apache.spark.sql.Row => Boolean)org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] <and>
+  (conditionExpr: String)org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] <and>
+  (condition: org.apache.spark.sql.Column)org.apache.spark.sql.Dataset[org.apache.spark.sql.Row]
+ cannot be applied to (Boolean)
+       student.filter(student("grade") == "A").show()
+               ^
+
+scala> student.filter(student("grade") === "A").show()
++-----+---+-----+
+|grade| id| name|
++-----+---+-----+
+|    A|101|Tommy|
+|    A|102| John|
+|    A|106|Suraj|
++-----+---+-----+
+
+
+scala> student.filter(student("grade") > "A").show()
++-----+---+------+
+|grade| id|  name|
++-----+---+------+
+|    B|103|   Sam|
+|    C|104|Rajeev|
+|    D|105|Rajesh|
++-----+---+------+
+
+
+scala> student.groupBy("grade").show()
+<console>:27: error: value show is not a member of org.apache.spark.sql.RelationalGroupedDataset
+       student.groupBy("grade").show()
+                                ^
+
+scala> student.groupBy("grade").count().show()
++-----+-----+                                                                   
+|grade|count|
++-----+-----+
+|    B|    1|
+|    D|    1|
+|    C|    1|
+|    A|    3|
++-----+-----+
+
+
+scala> val student1 = sqlc.read.json("/Users/daviddsouza/student.csv")
+student1: org.apache.spark.sql.DataFrame = [_corrupt_record: string]
+
+scala> student1.show()
+org.apache.spark.sql.AnalysisException: Since Spark 2.3, the queries from raw JSON/CSV files are disallowed when the
+referenced columns only include the internal corrupt record column
+(named _corrupt_record by default). For example:
+spark.read.schema(schema).json(file).filter($"_corrupt_record".isNotNull).count()
+and spark.read.schema(schema).json(file).select("_corrupt_record").show().
+Instead, you can cache or save the parsed results and then send the same query.
+For example, val df = spark.read.schema(schema).json(file).cache() and then
+df.filter($"_corrupt_record".isNotNull).count().
+  at org.apache.spark.sql.execution.datasources.json.JsonFileFormat.buildReader(JsonFileFormat.scala:112)
+  at org.apache.spark.sql.execution.datasources.FileFormat.buildReaderWithPartitionValues(FileFormat.scala:130)
+  at org.apache.spark.sql.execution.datasources.FileFormat.buildReaderWithPartitionValues$(FileFormat.scala:121)
+  at org.apache.spark.sql.execution.datasources.TextBasedFileFormat.buildReaderWithPartitionValues(FileFormat.scala:170)
+  at org.apache.spark.sql.execution.FileSourceScanExec.inputRDD$lzycompute(DataSourceScanExec.scala:407)
+  at org.apache.spark.sql.execution.FileSourceScanExec.inputRDD(DataSourceScanExec.scala:398)
+  at org.apache.spark.sql.execution.FileSourceScanExec.doExecute(DataSourceScanExec.scala:485)
+  at org.apache.spark.sql.execution.SparkPlan.$anonfun$execute$1(SparkPlan.scala:180)
+  at org.apache.spark.sql.execution.SparkPlan.$anonfun$executeQuery$1(SparkPlan.scala:218)
+  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+  at org.apache.spark.sql.execution.SparkPlan.executeQuery(SparkPlan.scala:215)
+  at org.apache.spark.sql.execution.SparkPlan.execute(SparkPlan.scala:176)
+  at org.apache.spark.sql.execution.SparkPlan.getByteArrayRdd(SparkPlan.scala:321)
+  at org.apache.spark.sql.execution.SparkPlan.executeTake(SparkPlan.scala:439)
+  at org.apache.spark.sql.execution.SparkPlan.executeTake(SparkPlan.scala:425)
+  at org.apache.spark.sql.execution.CollectLimitExec.executeCollect(limit.scala:47)
+  at org.apache.spark.sql.Dataset.collectFromPlan(Dataset.scala:3696)
+  at org.apache.spark.sql.Dataset.$anonfun$head$1(Dataset.scala:2722)
+  at org.apache.spark.sql.Dataset.$anonfun$withAction$1(Dataset.scala:3687)
+  at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$5(SQLExecution.scala:103)
+  at org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:163)
+  at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$1(SQLExecution.scala:90)
+  at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:772)
+  at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:64)
+  at org.apache.spark.sql.Dataset.withAction(Dataset.scala:3685)
+  at org.apache.spark.sql.Dataset.head(Dataset.scala:2722)
+  at org.apache.spark.sql.Dataset.take(Dataset.scala:2929)
+  at org.apache.spark.sql.Dataset.getRows(Dataset.scala:301)
+  at org.apache.spark.sql.Dataset.showString(Dataset.scala:338)
+  at org.apache.spark.sql.Dataset.show(Dataset.scala:825)
+  at org.apache.spark.sql.Dataset.show(Dataset.scala:784)
+  at org.apache.spark.sql.Dataset.show(Dataset.scala:793)
+  ... 47 elided
+
+scala> val student1 = sqlc.read.csv("/Users/daviddsouza/student.csv")
+student1: org.apache.spark.sql.DataFrame = [_c0: string, _c1: string ... 1 more field]
+
+scala> student1.show()
++---+---------+----+
+|_c0|      _c1| _c2|
++---+---------+----+
+|111| "Rajesh"| "A"|
+|112|  "Tommy"| "B"|
+|113|    "Raj"| "C"|
+|114|   "John"| "D"|
+|115|  "James"| "A"|
++---+---------+----+
+
+
+scala> student1.printSchema()
+root
+ |-- _c0: string (nullable = true)
+ |-- _c1: string (nullable = true)
+ |-- _c2: string (nullable = true)
+
+
+scala> import sqlContext.implicits._
+<console>:24: error: not found: value sqlContext
+       import sqlContext.implicits._
+              ^
+
+scala> import org.apache.spark.sql.sqlContext.implicits._
+<console>:24: error: object sqlContext is not a member of package org.apache.spark.sql
+       import org.apache.spark.sql.sqlContext.implicits._
+                                   ^
+
+scala> import org.apache.spark.sql.SQLImplicits
+import org.apache.spark.sql.SQLImplicits
+
+scala> case class Student(id: Int, name: String, grade: String)
+defined class Student
+
+scala> case class Student1(id: Int, name: String, grade: String)
+defined class Student1
+
+scala> val student3 =sc.textFile("/Users/daviddsouza/student.csv").map(_.split(",")).map( e => Student(e(0).toInt, e(1), e(2))).toDF()
+student3: org.apache.spark.sql.DataFrame = [id: int, name: string ... 1 more field]
+
+scala> student3.printSchema()
+root
+ |-- id: integer (nullable = false)
+ |-- name: string (nullable = true)
+ |-- grade: string (nullable = true)
+
+
+scala> student3.show()
++---+---------+-----+
+| id|     name|grade|
++---+---------+-----+
+|111| "Rajesh"|  "A"|
+|112|  "Tommy"|  "B"|
+|113|    "Raj"|  "C"|
+|114|   "John"|  "D"|
+|115|  "James"|  "A"|
++---+---------+-----+
+
+
+scala> student3.filter(student3("grade") > "A").show()
++---+----+-----+
+| id|name|grade|
++---+----+-----+
++---+----+-----+
+
+
+scala> student3.filter(student3("grade") === "A").show()
++---+----+-----+
+| id|name|grade|
++---+----+-----+
++---+----+-----+
+
+
+scala> student3.filter(student3("grade") == "A").show()
+<console>:28: error: overloaded method value filter with alternatives:
+  (func: org.apache.spark.api.java.function.FilterFunction[org.apache.spark.sql.Row])org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] <and>
+  (func: org.apache.spark.sql.Row => Boolean)org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] <and>
+  (conditionExpr: String)org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] <and>
+  (condition: org.apache.spark.sql.Column)org.apache.spark.sql.Dataset[org.apache.spark.sql.Row]
+ cannot be applied to (Boolean)
+       student3.filter(student3("grade") == "A").show()
+                ^
+
+scala> student3.filter(("grade") == "A").show()
+<console>:28: error: overloaded method value filter with alternatives:
+  (func: org.apache.spark.api.java.function.FilterFunction[org.apache.spark.sql.Row])org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] <and>
+  (func: org.apache.spark.sql.Row => Boolean)org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] <and>
+  (conditionExpr: String)org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] <and>
+  (condition: org.apache.spark.sql.Column)org.apache.spark.sql.Dataset[org.apache.spark.sql.Row]
+ cannot be applied to (Boolean)
+       student3.filter(("grade") == "A").show()
+                ^
+
+scala> student3.filter(("grade") === "A").show()
+<console>:28: error: value === is not a member of String
+       student3.filter(("grade") === "A").show()
+                                 ^
+
+scala> student3.show()
++---+---------+-----+
+| id|     name|grade|
++---+---------+-----+
+|111| "Rajesh"|  "A"|
+|112|  "Tommy"|  "B"|
+|113|    "Raj"|  "C"|
+|114|   "John"|  "D"|
+|115|  "James"|  "A"|
++---+---------+-----+
+
+
+scala> student3.registerTempTable("temptable")
+warning: there was one deprecation warning (since 2.0.0); for details, enable `:setting -deprecation' or `:replay -deprecation'
+
+scala> temptable.show()
+<console>:26: error: not found: value temptable
+       temptable.show()
+       ^
+
+scala> val student4 = sqlc.sql("select * from temptable")
+student4: org.apache.spark.sql.DataFrame = [id: int, name: string ... 1 more field]
+
+scala> student4.show()
++---+---------+-----+
+| id|     name|grade|
++---+---------+-----+
+|111| "Rajesh"|  "A"|
+|112|  "Tommy"|  "B"|
+|113|    "Raj"|  "C"|
+|114|   "John"|  "D"|
+|115|  "James"|  "A"|
++---+---------+-----+
+
+
+scala> 

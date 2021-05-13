@@ -1,0 +1,17 @@
+###configuring flume for downloading twitter data into json format
+1.Remove following jars:-
+sudo rm /usr/lib/flume-ng/lib/guava-10.0.1.jar
+sudo rm /usr/lib/flume-ng/lib/protobuf-java-2.4.1.jar
+
+2.Go to following link
+https://github.com/cloudera/cdh-twitter-example
+
+3.Building and moving Jar
+cd /home/cloudera/Downloads/cdh-twitter-example-master/flume-sources
+mvn package
+sudo mv /home/cloudera/Downloads/cdh-twitter-example-master/flume-sources/target/flume-sources-1.0-SNAPSHOT.jar /usr/lib/flume-ng/lib/
+
+4.start Flume agent
+flume-ng agent --name TwitterAgent  --conf /home/cloudera/Documents --conf-file /home/cloudera/Documents/sample.conf
+
+5.Validate your twitter using JsonLint

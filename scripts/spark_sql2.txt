@@ -1,0 +1,259 @@
+[cloudera@quickstart ~]$ spark-shell
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel).
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/lib/zookeeper/lib/slf4j-log4j12-1.7.5.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/lib/flume-ng/lib/slf4j-log4j12-1.7.5.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/lib/parquet/lib/slf4j-log4j12-1.7.5.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/lib/avro/avro-tools-1.7.6-cdh5.13.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /___/ .__/\_,_/_/ /_/\_\   version 1.6.0
+      /_/
+
+Using Scala version 2.10.5 (Java HotSpot(TM) 64-Bit Server VM, Java 1.7.0_67)
+Type in expressions to have them evaluated.
+Type :help for more information.
+19/01/26 20:24:31 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Spark context available as sc (master = local[*], app id = local-1548563076556).
+19/01/26 20:24:43 WARN shortcircuit.DomainSocketFactory: The short-circuit local reads feature cannot be used because libhadoop cannot be loaded.
+SQL context available as sqlContext.
+
+scala> import org.apache.spark.sql.SparkSession
+<console>:25: error: object SparkSession is not a member of package org.apache.spark.sql
+         import org.apache.spark.sql.SparkSession
+                ^
+
+scala> val sqlc = new org.apache.spark.sql.SQLContext(sc)
+sqlc: org.apache.spark.sql.SQLContext = org.apache.spark.sql.SQLContext@69d454d5
+
+scala> val dfs = sqlc.read.json("/user/sample_json/student.json")
+dfs: org.apache.spark.sql.DataFrame = [_corrupt_record: string, grade: string, id: bigint, name: string]
+
+scala> dfs.show()
++---------------+-----+----+------+
+|_corrupt_record|grade|  id|  name|
++---------------+-----+----+------+
+|              {| null|null|  null|
+|           null|    A| 101| Tommy|
+|           null|    A| 102|  John|
+|           null|    B| 103|   Sam|
+|           null|    C| 104|Rajeev|
+|           null|    D| 105|Rajesh|
+|           null|    A| 106| Suraj|
+|              }| null|null|  null|
++---------------+-----+----+------+
+
+
+scala> val dfs = sqlc.read.json("/user/sample_json/student.json")
+dfs: org.apache.spark.sql.DataFrame = [_corrupt_record: string, grade: string, id: string, name: string]
+
+scala> dfs.show()
++---------------+-----+----+------+
+|_corrupt_record|grade|  id|  name|
++---------------+-----+----+------+
+|              {| null|null|  null|
+|           null|    A| 101| Tommy|
+|           null|    A| 102|  John|
+|           null|    B| 103|   Sam|
+|           null|    C| 104|Rajeev|
+|           null|    D| 105|Rajesh|
+|           null|    A| 106| Suraj|
+|              }| null|null|  null|
++---------------+-----+----+------+
+
+
+scala> val dfs = sqlc.read.json("/user/sample_json/student.json")
+dfs: org.apache.spark.sql.DataFrame = [grade: string, id: string, name: string]
+
+scala> dfs.show()
++-----+---+------+
+|grade| id|  name|
++-----+---+------+
+|    A|101| Tommy|
+|    A|102|  John|
+|    B|103|   Sam|
+|    C|104|Rajeev|
+|    D|105|Rajesh|
+|    A|106| Suraj|
++-----+---+------+
+
+
+scala> dfs.show()
++-----+---+------+
+|grade| id|  name|
++-----+---+------+
+|    A|101| Tommy|
+|    A|102|  John|
+|    B|103|   Sam|
+|    C|104|Rajeev|
+|    D|105|Rajesh|
+|    A|106| Suraj|
++-----+---+------+
+
+
+scala> dfs.printSchema()
+root
+ |-- grade: string (nullable = true)
+ |-- id: string (nullable = true)
+ |-- name: string (nullable = true)
+
+
+scala> dfs.select("name").show()
++------+
+|  name|
++------+
+| Tommy|
+|  John|
+|   Sam|
+|Rajeev|
+|Rajesh|
+| Suraj|
++------+
+
+
+scala> dfs.filter(dfs("grade")="A").show()
+<console>:32: error: value update is not a member of org.apache.spark.sql.DataFrame
+              dfs.filter(dfs("grade")="A").show()
+                         ^
+
+scala> dfs.filter(dfs("grade")>"A").show()
++-----+---+------+
+|grade| id|  name|
++-----+---+------+
+|    B|103|   Sam|
+|    C|104|Rajeev|
+|    D|105|Rajesh|
++-----+---+------+
+
+
+scala> dfs.filter(dfs("grade")== "A").show()
+<console>:32: error: overloaded method value filter with alternatives:
+  (conditionExpr: String)org.apache.spark.sql.DataFrame <and>
+  (condition: org.apache.spark.sql.Column)org.apache.spark.sql.DataFrame
+ cannot be applied to (Boolean)
+              dfs.filter(dfs("grade")== "A").show()
+                  ^
+
+scala> dfs.filter(dfs("grade")= "A").show()
+<console>:32: error: value update is not a member of org.apache.spark.sql.DataFrame
+              dfs.filter(dfs("grade")= "A").show()
+                         ^
+
+scala> dfs.filter(dfs("grade")=== "A").show()
++-----+---+-----+
+|grade| id| name|
++-----+---+-----+
+|    A|101|Tommy|
+|    A|102| John|
+|    A|106|Suraj|
++-----+---+-----+
+
+
+scala> dfs.filter("grade = 'A'")
+res11: org.apache.spark.sql.DataFrame = [grade: string, id: string, name: string]
+
+scala> dfs.filter("grade = 'A'").show()
++-----+---+-----+
+|grade| id| name|
++-----+---+-----+
+|    A|101|Tommy|
+|    A|102| John|
+|    A|106|Suraj|
++-----+---+-----+
+
+
+scala> dfs.groupBy("id").count().show()
++---+-----+                                                                     
+| id|count|
++---+-----+
+|101|    1|
+|102|    1|
+|103|    1|
+|104|    1|
+|105|    1|
+|106|    1|
++---+-----+
+
+
+scala> dfs.groupBy("grade").count().show()
++-----+-----+                                                                   
+|grade|count|
++-----+-----+
+|    A|    3|
+|    B|    1|
+|    C|    1|
+|    D|    1|
++-----+-----+
+
+
+scala> import sqlContext.implicits._
+import sqlContext.implicits._
+
+scala> case class Student(id: Int, name: String, grade: String)
+defined class Student
+
+scala> val stud = sc.textFile("/user/sample_csv/student.csv").map(_.split(",")).map( e => Student(e(0).toInt, e(1), e(2)).toDF()
+     | 
+     | 
+You typed two blank lines.  Starting a new command.
+
+scala> val stud = sc.textFile("/user/sample_csv/student.csv").map(_.split(",")).map( e => Student(e(0).toInt, e(1), e(2))).toDF()
+stud: org.apache.spark.sql.DataFrame = [id: int, name: string, grade: string]
+
+scala> stud.show()
++---+---------+-----+
+| id|     name|grade|
++---+---------+-----+
+|111| "Rajesh"|  "A"|
+|112|  "Tommy"|  "B"|
+|113|    "Raj"|  "C"|
+|114|   "John"|  "D"|
+|115|  "James"|  "A"|
++---+---------+-----+
+
+
+scala> stud.printSchema()
+root
+ |-- id: integer (nullable = false)
+ |-- name: string (nullable = true)
+ |-- grade: string (nullable = true)
+
+
+scala> stud.registerTempTable("temp_student")
+
+scala> val record = sqlContext.sql("select * from temp_student")
+19/01/26 22:01:41 WARN metastore.ObjectStore: Version information not found in metastore. hive.metastore.schema.verification is not enabled so recording the schema version 1.1.0-cdh5.13.0
+19/01/26 22:01:41 WARN metastore.ObjectStore: Failed to get database default, returning NoSuchObjectException
+record: org.apache.spark.sql.DataFrame = [id: int, name: string, grade: string]
+
+scala> temp_student.show()
+<console>:29: error: not found: value temp_student
+              temp_student.show()
+              ^
+
+scala> stud.registerTempTable("temp_student")
+
+scala> temp_student.show()
+<console>:29: error: not found: value temp_student
+              temp_student.show()
+              ^
+
+scala> val record = sqlContext.sql("select * from temp_student")
+record: org.apache.spark.sql.DataFrame = [id: int, name: string, grade: string]
+
+scala> record.show()
++---+---------+-----+
+| id|     name|grade|
++---+---------+-----+
+|111| "Rajesh"|  "A"|
+|112|  "Tommy"|  "B"|
+|113|    "Raj"|  "C"|
+|114|   "John"|  "D"|
+|115|  "James"|  "A"|
++---+---------+-----+
+

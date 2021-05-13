@@ -1,0 +1,46 @@
+Interview Questions
+
+Big Data Questions (Spark & Scala)
+
+	1.	what is transformation and action And Difference
+	2.	difference betn flat map n map?
+	3.	what is spark context?
+	4.	what is rdd n advantage?
+	5.	what is dataframe?
+	6.	which one is lazy execution transformation or action?   answer ->  transformation
+	7.	what is difference between rdd & dataframe?
+	8.	How do you perform sql query in spark?
+	9.	how to create temp table?
+	10.	what is partiion? How to change number of partition?
+	11.	what is advantage of using spark over hadoop?
+	12.	can i use spark with hive or hadoop ecosystem?  Answer-> Yes You can work with or without hadoop
+	13.	can i write map reduce in spark and how?
+	14.	how do you submit you application to your spark engine? answer-> create jar file
+	15.	 how do you monitor job progress in hadoop and spark?
+	16.	difference between val & var?
+	17.	what is case class & its advantages?
+	18.	all oops concept que
+	⁃	what is encapasulation?
+	⁃	what is abstraction?
+	⁃	what is object in class?
+	⁃	what is trait?
+	⁃	does scala support method overloading & method overriding?
+	⁃	what is method overloading?
+	⁃	what is method overriding?
+	⁃	what is inheritance & how to achieve it?
+	⁃	what is is-a-relationship & has-a-relationship?
+	⁃	is scala is dynamic or static language & why?
+	⁃	what is interface? does scala support abstraction using interface?   answer -> no interface in scala we can use trait for interface
+	⁃	
+	⁃	
+	19.	how to create function in scala, can you explain syntax with example?
+	20.	how many loops are available in scala?
+	21.	explain working of for loop in scala?
+	22.	what is difference between (1to 5) & (1 until 5)?
+	23.	how do we control for loop with difference of 2 or any other number?
+	24.	what is unit type in scala function?
+	25.	what is any data type?
+	26.	what is difference between NULL & null?
+	27.	what is NILL, nothing, unit?
+	28.	how do you create null string in scala?
+	29.	what is spark session?
