@@ -1,0 +1,51 @@
+[debug] Full compilation, no sources in previous analysis.
+[debug] All sources are invalidated.
+[debug] Initial set of included nodes: 
+[debug] Recompiling all sources: number of invalidated sources > 50.0% of all sources
+[info] Compiling 4 Scala sources to /Users/sureshcs/IdeaProjects/AppDemo/target/scala-2.12/classes ...
+[debug] Getting org.scala-sbt:compiler-bridge_2.12:1.3.5:compile for Scala 2.12.10
+[info] Non-compiled module 'compiler-bridge_2.12' for Scala 2.12.10. Compiling...
+[debug] Creating plain compiler interface for 2.12.10.
+[debug]   > Arguments: 
+[debug] 	-nowarn
+[debug] 	-d
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_1edc062e
+[debug] 	-bootclasspath
+[debug] 	/Users/sureshcs/.sbt/boot/scala-2.12.10/lib/scala-library.jar
+[debug] 	-classpath
+[debug] 	/Users/sureshcs/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/compiler-interface/1.3.5/compiler-interface-1.3.5.jar:/Users/sureshcs/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/com/google/protobuf/protobuf-java/3.7.0/protobuf-java-3.7.0.jar:/Users/sureshcs/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/util-interface/1.3.0/util-interface-1.3.0.jar:/Users/sureshcs/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/compiler-bridge_2.12/1.3.5/compiler-bridge_2.12-1.3.5-sources.jar:/Users/sureshcs/.sbt/boot/scala-2.12.10/lib/scala-compiler.jar:/Users/sureshcs/.sbt/boot/scala-2.12.10/lib/jline.jar:/Users/sureshcs/.sbt/boot/scala-2.12.10/lib/scala-reflect.jar:/Users/sureshcs/.sbt/boot/scala-2.12.10/lib/jansi.jar:/Users/sureshcs/.sbt/boot/scala-2.12.10/lib/scala-xml_2.12.jar
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/API.scala
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/Analyzer.scala
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/CallbackGlobal.scala
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/ClassName.scala
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/Command.scala
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/Compat.scala
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/CompilerInterface.scala
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/ConsoleInterface.scala
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/DelegatingReporter.scala
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/Dependency.scala
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/ExtractAPI.scala
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/ExtractUsedNames.scala
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/GlobalHelpers.scala
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/InteractiveConsoleFactory.scala
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/InteractiveConsoleHelper.scala
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/InteractiveConsoleInterface.scala
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/InteractiveConsoleResponse.scala
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/JarUtils.scala
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/JavaUtils.scala
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/LocalToNonLocalClass.scala
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/LocateClassFile.scala
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/Log.scala
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/Message.scala
+[debug] 	/var/folders/vj/02__jywj3p15bb9t6fnqn9cc0000gn/T/sbt_87a2f212/xsbt/ScaladocInterface.scala
+[debug]       
+[info]   Compilation completed in 41.567s.
+[debug] Getting org.scala-sbt:compiler-bridge_2.12:1.3.5:compile for Scala 2.12.10
+[debug] [zinc] Running cached compiler 23a9d5e for Scala compiler version 2.12.10
+[debug] [zinc] The Scala compiler is invoked with:
+[debug] 	-bootclasspath
+[debug] 	/Users/sureshcs/.sbt/boot/scala-2.12.10/lib/scala-library.jar
+[debug] 	-classpath
+[debug] 	/Users/sureshcs/IdeaProjects/AppDemo/target/scala-2.12/classes
+[debug] Compilation failed (CompilerInterface)
+[error] (Compile / compileIncremental) Compilation failed

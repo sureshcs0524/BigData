@@ -1,0 +1,61 @@
+[error] /Users/sureshcs/IdeaProjects/AppDemo/src/main/scala/ParseJsonArray.scala:1:8: not found: object net
+[error] import net.liftweb.json.DefaultFormats
+[error]        ^
+[error] /Users/sureshcs/IdeaProjects/AppDemo/src/main/scala/ParseJsonArray.scala:3:8: not found: object net
+[error] import net.liftweb.json._
+[error]        ^
+[error] /Users/sureshcs/IdeaProjects/AppDemo/src/main/scala/ParseJsonArray.scala:17:25: not found: value DefaultFormats
+[error]   implicit val formats: DefaultFormats.type = DefaultFormats
+[error]                         ^
+[error] /Users/sureshcs/IdeaProjects/AppDemo/src/main/scala/ParseJsonArray.scala:17:47: not found: value DefaultFormats
+[error]   implicit val formats: DefaultFormats.type = DefaultFormats
+[error]                                               ^
+[error] /Users/sureshcs/IdeaProjects/AppDemo/src/main/scala/ParseJsonArray.scala:49:14: not found: value parse
+[error]   val json = parse(jsonString.mkString)
+[error]              ^
+[error] /Users/sureshcs/IdeaProjects/AppDemo/src/main/scala/ParseJsonFileClick.scala:1:8: not found: object net
+[error] import net.liftweb.json.DefaultFormats
+[error]        ^
+[error] /Users/sureshcs/IdeaProjects/AppDemo/src/main/scala/ParseJsonFileClick.scala:3:8: not found: object net
+[error] import net.liftweb.json._
+[error]        ^
+[error] /Users/sureshcs/IdeaProjects/AppDemo/src/main/scala/ParseJsonFileClick.scala:11:25: not found: value DefaultFormats
+[error]   implicit val formats: DefaultFormats.type = DefaultFormats
+[error]                         ^
+[error] /Users/sureshcs/IdeaProjects/AppDemo/src/main/scala/ParseJsonFileClick.scala:11:47: not found: value DefaultFormats
+[error]   implicit val formats: DefaultFormats.type = DefaultFormats
+[error]                                               ^
+[error] /Users/sureshcs/IdeaProjects/AppDemo/src/main/scala/ParseJsonFileClick.scala:14:14: not found: value parse
+[error]   val json = parse(jsonString.mkString)
+[error]              ^
+[error] /Users/sureshcs/IdeaProjects/AppDemo/src/main/scala/ParseJsonFileImpressions.scala:1:8: not found: object net
+[error] import net.liftweb.json.DefaultFormats
+[error]        ^
+[error] /Users/sureshcs/IdeaProjects/AppDemo/src/main/scala/ParseJsonFileImpressions.scala:3:8: not found: object net
+[error] import net.liftweb.json._
+[error]        ^
+[error] /Users/sureshcs/IdeaProjects/AppDemo/src/main/scala/ParseJsonFileImpressions.scala:13:25: not found: value DefaultFormats
+[error]   implicit val formats: DefaultFormats.type = DefaultFormats
+[error]                         ^
+[error] /Users/sureshcs/IdeaProjects/AppDemo/src/main/scala/ParseJsonFileImpressions.scala:13:47: not found: value DefaultFormats
+[error]   implicit val formats: DefaultFormats.type = DefaultFormats
+[error]                                               ^
+[error] /Users/sureshcs/IdeaProjects/AppDemo/src/main/scala/ParseJsonFileImpressions.scala:16:14: not found: value parse
+[error]   val json = parse(jsonString.mkString)
+[error]              ^
+[error] /Users/sureshcs/IdeaProjects/AppDemo/src/main/scala/TestDeckofCards.scala:1:12: object apache is not a member of package org
+[error] import org.apache.spark.sql.SparkSession
+[error]            ^
+[error] /Users/sureshcs/IdeaProjects/AppDemo/src/main/scala/TestDeckofCards.scala:2:12: object apache is not a member of package org
+[error] import org.apache.spark.SparkContext
+[error]            ^
+[error] /Users/sureshcs/IdeaProjects/AppDemo/src/main/scala/TestDeckofCards.scala:3:12: object apache is not a member of package org
+[error] import org.apache.spark.SparkConf
+[error]            ^
+[error] /Users/sureshcs/IdeaProjects/AppDemo/src/main/scala/TestDeckofCards.scala:7:22: not found: value SparkSession
+[error]     val sparkSession=SparkSession
+[error]                      ^
+[error] /Users/sureshcs/IdeaProjects/AppDemo/src/main/scala/TestDeckofCards.scala:9:16: not found: value name
+[error]       .appName(name ="App Demo")
+[error]                ^
+[error] 20 errors found
